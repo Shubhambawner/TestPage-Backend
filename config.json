@@ -1,0 +1,10 @@
+{
+    "PORT":3002,
+    "database":{
+        "host": "localhost",
+        "user": "root",
+        "password": "qwerQWER1234",
+        "database": "insaid"
+    },
+    "env":"dev"
+}
