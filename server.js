@@ -2,14 +2,14 @@
 const express = require('express');
 const PORT = require('./config.json').PORT
 let debug = require('./config.json').env == "dev" ? console.log : () => { }
-
+let cors = require('cors')
 
 let { insertDataDB, terminateDB } = require('./database')
 
 const initializeExpress = async () => {
     const app = express();
+    app.use(cors());
 
-    // app.use(cors());
     app.use(express.json());
 
     setRouts(app)
@@ -31,7 +31,8 @@ function setRouts(app) {
 }
 
 function insertContactDataController(req, res) {
-    debug(req.body)
+    res.header("Access-Control-Allow-Origin", "*");
+    debug(req, 'arr')
     let resp = insertDataDB(req.body)
         .then(resp => res.status(200).json({
             'status': 'ok'
